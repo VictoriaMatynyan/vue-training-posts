@@ -1,16 +1,22 @@
 <template>
      <!-- чтобы работать с массивами, используем директиву v-for;
     в 1ю очередь указываем 1 элемент итерации, далее оператор in и после - откуда этот элемент мы получаем -->
-    <div class="post border" v-for="post in posts">
-        <!-- с помощью интерполяции  забираем данные нужного нам поста и помещаем в шаблон -->
-        <div><strong>Post name:</strong> {{ post.title }}</div>
-        <div><strong>Post body:</strong> {{ post.body }}</div>
-</div>
+    <div>
+        <h2>Users List</h2>
+        <post-item
+        v-for="post in posts"
+        :post="post"
+    />
+    </div>
+    
 </template>
 
 <script>
+import PostItem from '@/components/PostItem.vue';
+
     // компонент postList ожидает посты как аргумент
     export default {
+        components: { PostItem },
         props: {
             // прописываем, что мы ожидаем на вход (посты)
             posts: {
@@ -25,9 +31,5 @@
 
 <!-- флаг scoped (<style scoped>) позволяет применять стили только для конкретного компонента, и эти стили не будут применяться к другим компонентам --> 
 <style scoped>
-.post {
-    margin-top: 15px;
-    padding: 15px;
-    border: 2px solid teal;
-}
+
 </style>
