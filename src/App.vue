@@ -1,6 +1,8 @@
 <template>
     <div class="app">
-        <post-form/>
+        <post-form
+        @create="createPost"
+        />
         <post-list :posts="posts"/>
         <!-- <post-list v-bind:posts="posts"/> -->
        
@@ -33,24 +35,12 @@ export default {
                 {id: 3, title: 'JavaScript 3', body: 'JavaScript is a programming language that adds interactivity to your website 3'},
                 {id: 4, title: 'JavaScript 4', body: 'JavaScript is a programming language that adds interactivity to your website 4'},
             ],
-            title: '',
-            body: '',
         }
     },
     // функции для элементов объявляются в поле methods
     methods: {
-        createPost() {
-            // создаём новый объект, id берём из текущей даты
-            const newPost = {
-                id: Date.now(),
-                // title и body берём из соответствующей модели
-                title: this.title,
-                body: this.body
-            }
-            // добавляем новый пост в массив постов
-            this.posts.push(newPost);
-            this.title = '';
-            this.body = '';
+        createPost(post) {
+            this.posts.push(post);
         },
     }
 }
